@@ -17,8 +17,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        \Illuminate\Support\Facades\App::setLocale('fr');
+
+        \Illuminate\Support\Facades\Validator::replacer('required', function ($message, $attribute, $rule, $parameters) {
+            return str_replace(':attribute', $attribute, __('validation.required', ['attribute' => $attribute]));
+        });
     }
 }

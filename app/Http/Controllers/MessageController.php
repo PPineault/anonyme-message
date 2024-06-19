@@ -25,4 +25,28 @@ class MessageController extends Controller
 
         return redirect()->route('send-message')->with('success', 'Message envoyé avec succès !');
     }
+
+    public function destroy($id)
+    {
+        $message = Message::findOrFail($id);
+        $message->delete();
+
+        return redirect()->route('send-message')->with('success', 'Le message a été supprimé avec succès !');
+    }
+    public function edit($id)
+    {
+        $message = Message::findOrFail($id);
+        return view('edit-message', compact('message'));
+    }
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required'
+        ]);
+
+        $message = Message::findOrFail($id);
+        $message->update($validatedData);
+
+        return redirect()->route('send-message')->with('success', 'Le message a été modifié avec succès !');
+    }
 }

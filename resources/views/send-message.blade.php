@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <title>Envoyer un message</title>
 </head>
 
@@ -36,6 +37,12 @@
             @foreach ($messages as $msg)
                 <div>
                     <p>{{ $msg->content }}</p>
+                    <a href="{{ route('messages.edit', $msg->id) }}" class="btn btn-primary btn-sm">Modifier</a>
+                    <form action="{{ route('messages.destroy', $msg->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
                 </div>
             @endforeach
 
