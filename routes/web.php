@@ -17,3 +17,4 @@ Route::get('/messages', [MessageController::class, 'getMessages'])->name('messag
 Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
 Route::put('/messages/{id}', [MessageController::class, 'update'])->name('messages.update');
 Route::get('/messages/{id}/edit', [MessageController::class, 'edit'])->name('messages.edit');
+Route::get('/get-new-messages', [MessageController::class, 'getNewMessages'])->name('messages.getNew');
