@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Broadcast;
 use App\Events\NewMessageEvent;
 
 
+
 class MessageController extends Controller
 {
     /*
@@ -52,7 +53,7 @@ class MessageController extends Controller
 
         $message = Message::create($validatedData);
 
-        Broadcast::event(new NewMessageEvent($message));
+
 
         return redirect()->route('send-message')->with('success', 'Message envoyé avec succès !');
     }
